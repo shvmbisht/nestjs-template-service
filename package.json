@@ -1,0 +1,119 @@
+{
+  "name": "your-service-name",
+  "version": "1.1.6",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "format": "prettier --write \"{src,test}/**/*.ts\"",
+    "format:check": "prettier --check \"{src,test}/**/*.ts\"",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
+    "lint:check": "eslint \"{src,test}/**/*.ts\"",
+    "test": "cross-env jest --runInBand --detectOpenHandles --forceExit",
+    "test:watch": "cross-env NODE_ENV=test jest --watch --runInBand --detectOpenHandles --forceExit",
+    "test:cov": "cross-env NODE_ENV=test jest --coverage --runInBand --detectOpenHandles --forceExit",
+    "test:github:ci": "cross-env NODE_ENV=test jest --silent --ci --coverage --testLocationInResults --json --outputFile=report.json --runInBand --detectOpenHandles --forceExit",
+    "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --detectOpenHandles --forceExit",
+    "prepare": "husky install",
+    "migrate:create": "sh -c 'ts-node node_modules/migrate-mongo/bin/migrate-mongo.js create $0 -f migrate-mongo-config.ts' ",
+    "migrate:down": "ts-node --transpile-only -r tsconfig-paths/register node_modules/.bin/migrate-mongo down -f ./migrate-mongo-config.ts",
+    "migrate:up": "ts-node --transpile-only -r tsconfig-paths/register node_modules/.bin/migrate-mongo up -f ./migrate-mongo-config.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/mongoose": "^9.0.3",
+    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.2.1",
+    "cheerio": "^1.0.0-rc.11",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "config": "^3.3.7",
+    "date-fns": "^2.28.0",
+    "dotenv": "^16.0.0",
+    "js-yaml": "^4.1.0",
+    "lint-staged": "^12.3.7",
+    "mongoose": "^6.2.9",
+    "nestjs-i18n": "^8.1.2",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^7.2.0",
+    "swagger-ui-express": "^4.3.0",
+    "uuid": "^8.3.2",
+    "winston": "^3.6.0"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^16.2.1",
+    "@nestjs/cli": "^8.0.0",
+    "@nestjs/schematics": "^8.0.0",
+    "@nestjs/testing": "^8.0.0",
+    "@types/config": "^0.0.41",
+    "@types/express": "^4.17.13",
+    "@types/jest": "27.4.1",
+    "@types/lodash": "^4.14.181",
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^16.0.0",
+    "@types/supertest": "^2.0.11",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "commitlint": "^16.2.3",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.2.5",
+    "migrate-mongo": "^9.0.0",
+    "mongodb-memory-server": "^8.4.2",
+    "prettier": "^2.3.2",
+    "source-map-support": "^0.5.20",
+    "supertest": "^6.1.3",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.10.1",
+    "typescript": "^4.3.5"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.ts",
+      "!<rootDir>/src/db-migrations/**/*.ts"
+    ],
+    "coverageDirectory": "coverage",
+    "testEnvironment": "node",
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/test.setup.ts"
+    ]
+  },
+  "optionalDependencies": {},
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --cache --fix --max-warnings=0",
+      "prettier --write"
+    ],
+    "test/**/*.ts": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
+  }
+}

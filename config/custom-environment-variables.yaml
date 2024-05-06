@@ -1,0 +1,19 @@
+server:
+  port: APP_PORT
+  swaggerSchema: SWAGGER_SCHEMA
+  hostname: SERVER_HOSTNAME
+
+db:
+  mongodb:
+    uri: MONGODB_URI
+
+externalServices:
+  zaapiStore:
+    baseUrl: ZAAPI_STORE_BASE_URL
+  zaapiIam:
+    baseUrl: ZAAPI_IAM_BASE_URL
+  zaapiNotification:
+    baseUrl: ZAAPI_NOTIFICATION_BASE_URL
+  zaapiPayment:
+    baseUrl: ZAAPI_PAYMENT_BASE_URL
+

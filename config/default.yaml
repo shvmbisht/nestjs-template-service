@@ -1,0 +1,23 @@
+service:
+  name: Your service name
+  description: Your service description
+  baseUrl: /api/template
+  apiVersion: 0.1.0
+  docsBaseUrl: /docs/template
+
+server:
+  port: 3004
+  swaggerSchema: http
+  hostname: localhost:3004
+  cors:
+    allowedHeaders: 'authorization,content-type'
+    exposedHeaders: 'authorization,x-pagination-page,x-pagination-page-size,x-pagination-total'
+
+db:
+  mongodb:
+    uri: mongodb://localhost:27017/template
+
+logger:
+  formatter: local-custom
+  fieldsToMask:
+    - accessToken
